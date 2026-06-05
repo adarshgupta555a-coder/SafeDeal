@@ -140,7 +140,7 @@ const PropertyPage = () => {
                                     className="w-full h-full object-cover"
                                 />) : url?.mediaType === "video" ? (
                                     <video
-                                        className="w-full h-full object-cover"
+                                        className="w-full h-full"
                                         autoPlay
                                         loop
                                         muted
