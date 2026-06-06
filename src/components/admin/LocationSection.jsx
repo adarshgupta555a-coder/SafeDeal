@@ -3,6 +3,7 @@ import Btn from "../../ui/Btn";
 import DeleteModal from "./DeleteConfirmModel";
 import LocationForm from "./LocationForm";
 import SlideOver from "./SlideOverModal";
+import supabase from "../../database/supabase";
 
 export default function LocationsSection({ locations, setLocations }) {
   const [slide, setSlide] = useState(null);
@@ -12,6 +13,20 @@ export default function LocationsSection({ locations, setLocations }) {
     setLocations(prev => l.id && prev.find(x => x.id === l.id) ? prev.map(x => x.id === l.id ? l : x) : [...prev, l]);
     setSlide(null);
   };
+
+  const DeleteLocation = async () => {
+    const { error } = await supabase
+      .from('location')
+      .delete()
+      .eq('id', deleting.id)
+      if (!error) {
+          setLocations(ls => ls.filter(x => x.id !== deleting.id)); setDeleting(null);
+      }
+  }
+
+  if (locations === null) {
+    return <h1 className="text-4xl">Loading...</h1>
+  }
 
   return (
     <div>
@@ -54,7 +69,7 @@ export default function LocationsSection({ locations, setLocations }) {
 
       {deleting && (
         <DeleteModal name={deleting.name} onCancel={() => setDeleting(null)}
-          onConfirm={() => { setLocations(ls => ls.filter(x => x.id !== deleting.id)); setDeleting(null); }} />
+          onConfirm={DeleteLocation} />
       )}
     </div>
   );

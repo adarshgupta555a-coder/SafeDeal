@@ -15,12 +15,9 @@ const LatestProperty = () => {
     const {data, error} = await supabase
     .from("properties")
     .select(`
-      id,
-      name,
-      image,
-      media,
-      price,
+      * ,
       location (
+      id,
       name
       )
       `)

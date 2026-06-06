@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Badge from "../../ui/Badge";
 import PropertiesSection from "./PropertiesSection";
 import LocationsSection from "./LocationSection";
+import supabase from "../../database/supabase";
 
 const NAV = [
   { id: "properties", label: "Properties", icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /> },
@@ -10,13 +11,11 @@ const NAV = [
 
 const DUMMY_CREDENTIALS = { email: "admin@estate.com", password: "Admin@123" };
 
-const LOCATIONS_SEED = [
-  { id: 1, name: "Downtown", description: "Heart of the city with vibrant culture.", image: "" },
-];
+
 
 export default function Dashboard({ onLogout }) {
   const [active, setActive] = useState("properties");
-  const [locations, setLocations] = useState(DUMMY_CREDENTIALS ? LOCATIONS_SEED : []);
+  const [locations, setLocations] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const SidebarContent = () => (
@@ -39,7 +38,7 @@ export default function Dashboard({ onLogout }) {
             className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition ${active === n.id ? "bg-amber-500 text-slate-900" : "text-slate-400 hover:bg-slate-800 hover:text-white"}`}>
             <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">{n.icon}</svg>
             {n.label}
-            {n.id === "locations" && <Badge color="blue">{locations.length}</Badge>}
+            {n.id === "locations" && <Badge color="blue">{locations?.length}</Badge>}
           </button>
         ))}
       </nav>
@@ -52,6 +51,20 @@ export default function Dashboard({ onLogout }) {
       </div>
     </>
   );
+
+  useEffect(() => {
+    getAllLocation()
+  }, [])
+
+  const getAllLocation = async () => {
+    const { data: location, error } = await supabase
+      .from('location')
+      .select('*')
+
+      if (!error) {
+        setLocations(location)
+      }
+  }
 
   return (
     <div className="min-h-screen bg-[#070c18] flex">

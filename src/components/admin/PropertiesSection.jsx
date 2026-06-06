@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Input from "../../ui/Input";
 import Btn from "../../ui/Btn";
 import SlideOver from "./SlideOverModal";
 import PropertyForm from "./PropertyForm";
 import DeleteModal from "./DeleteConfirmModel";
 import Badge from "../../ui/Badge";
+import supabase from "../../database/supabase";
 
 export default function PropertiesSection({ locations }) {
   const [properties, setProperties] = useState([]);
@@ -18,9 +19,47 @@ export default function PropertiesSection({ locations }) {
   };
 
   const filtered = properties.filter(p =>
-    p.name.toLowerCase().includes(search.toLowerCase()) ||
-    p.location.toLowerCase().includes(search.toLowerCase())
+       p.name.toLowerCase().includes(search.toLowerCase()) ||
+    p.location.name.toLowerCase().includes(search.toLowerCase())
   );
+
+
+  useEffect(() => {
+    getAllProperties()
+  }, [])
+
+  const getAllProperties = async () => {
+
+    const { data, error } = await supabase
+      .from('properties')
+      .select(`
+        * ,
+        location (
+        id,
+        name
+        )
+        `)
+
+    if (!error) {
+      setProperties(data)
+    }
+  }
+
+  const DeleteProperty = async () => {
+    const { error } = await supabase
+      .from('properties')
+      .delete()
+      .eq('id', deleting.id)
+    if (!error) {
+      setProperties(ps => ps.filter(x => x.id !== deleting.id)); 
+      setDeleting(null); 
+    }
+
+  }
+
+  if (properties.length === 0) {
+    return <h1 className="text-4xl text-center">Loading...</h1>
+  }
 
   return (
     <div>
@@ -49,7 +88,7 @@ export default function PropertiesSection({ locations }) {
                 {p.thumbnail_image
                   ? <img src={p.thumbnail_image} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
                   : <div className="w-full h-full flex items-center justify-center text-slate-600">No image</div>}
-                <div className="absolute top-2 right-2"><Badge color="amber">{p.location || "—"}</Badge></div>
+                <div className="absolute top-2 right-2"><Badge color="amber">{p.location.name || "—"}</Badge></div>
               </div>
               <div className="p-4">
                 <h4 className="font-semibold text-white truncate mb-2">{p.name}</h4>
@@ -76,7 +115,7 @@ export default function PropertiesSection({ locations }) {
 
       {deleting && (
         <DeleteModal name={deleting.name} onCancel={() => setDeleting(null)}
-          onConfirm={() => { setProperties(ps => ps.filter(x => x.id !== deleting.id)); setDeleting(null); }} />
+          onConfirm={DeleteProperty} />
       )}
     </div>
   );

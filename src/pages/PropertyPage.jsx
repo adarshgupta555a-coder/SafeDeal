@@ -23,22 +23,19 @@ const PropertyPage = () => {
         const { data, error } = await supabase
             .from("properties")
             .select(`
-                  id,
-                  name,
-                  image,
-                  media,
-                  price,
+                  * ,
                   location (
+                  id,
                   name
                 )
             `)
             .single()
             .eq("id", id)
 
-            if (!error) {
-                setProperty(data)
-                console.log(data)
-            }
+        if (!error) {
+            setProperty(data)
+            console.log(data)
+        }
     }
 
     return (
@@ -108,7 +105,7 @@ const PropertyPage = () => {
                         </div>
                         <div className="fade-up-d1 text-left sm:text-right flex-shrink-0">
                             <div className="font-display text-4xl sm:text-5xl font-semibold gold-text leading-none">
-                                ₹{property?.price?getCurrencyName(property?.price):property?.price}
+                                ₹{property?.price ? getCurrencyName(property?.price) : property?.price}
                             </div>
                             <div className="text-white/30 text-xs mt-1">
                                 ₹17,708 / sq.ft · Price Negotiable
@@ -135,7 +132,7 @@ const PropertyPage = () => {
                             <div className="main-image-wrap relative w-full h-[280px] sm:h-[380px] lg:h-[440px] cursor-zoom-in">
                                 {url?.mediaType === "image" ? (<img
                                     id="mainImg"
-                                    src={url.mediaUrl || property?.image || "https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1200&auto=format&fit=crop&q=85"}
+                                    src={property?.thumbnail_image || "https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1200&auto=format&fit=crop&q=85"}
                                     alt="Luxury Sky Villa – Main View"
                                     className="w-full h-full object-cover"
                                 />) : url?.mediaType === "video" ? (
@@ -222,7 +219,7 @@ const PropertyPage = () => {
                             {/* Thumbnails row */}
                             <div className="p-3 grid grid-cols-6 gap-2">
                                 {/* Thumb 1 (active) */}
-                                {property?.media?.images?.map((image,index)=> <div
+                                {property?.media_data?.images?.map((image, index) => <div
                                     key={index}
                                     className="gal-thumb active rounded-xl overflow-hidden h-14 sm:h-16 cursor-pointer"
                                     onClick={() => switchImg(image)}
@@ -234,12 +231,12 @@ const PropertyPage = () => {
                                     />
                                 </div>)}
                                 {/* Thumb 4 */}
-                              
-                            
+
+
                                 {/* Thumb 6: Video */}
-                                 {property?.media?.video?.map((video,index)=> <div
+                                <div
                                     className="gal-thumb rounded-xl overflow-hidden h-14 sm:h-16 cursor-pointer relative"
-                                    onClick={() => switchImg(video, "video")}
+                                    onClick={() => switchImg(property?.media_data?.video, "video")}
                                 >
                                     <img
                                         src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=300&auto=format&fit=crop&q=75"
@@ -256,7 +253,7 @@ const PropertyPage = () => {
                                             </svg>
                                         </div>
                                     </div>
-                                </div>)}
+                                </div>
                             </div>
                         </div>
                         {/* ── Tab Navigation ── */}
@@ -1336,7 +1333,7 @@ const PropertyPage = () => {
                             />
                             <div className="mb-4">
                                 <div className="font-display text-4xl font-semibold gold-text leading-none mb-1">
-                                    ₹{property?.price?getCurrencyName(property?.price):property?.price}
+                                    ₹{property?.price ? getCurrencyName(property?.price) : property?.price}
                                 </div>
                                 <div className="text-white/30 text-xs">
                                     ₹17,708 per sq.ft. · Price Negotiable

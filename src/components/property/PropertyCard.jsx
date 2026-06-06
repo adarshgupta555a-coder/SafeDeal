@@ -9,7 +9,7 @@ const PropertyCard = ({property}) => {
         >
           <div className="relative overflow-hidden h-56">
             <img
-              src={property?.image}
+              src={property?.thumbnail_image}
               alt="Villa"
               className="prop-img w-full h-full object-cover"
             />

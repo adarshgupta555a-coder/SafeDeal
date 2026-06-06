@@ -6,7 +6,7 @@ const Btn = ({ variant = "primary", className = "", children, ...p }) => {
     danger: "bg-red-600/20 hover:bg-red-600/40 text-red-400 border border-red-600/40 focus:ring-red-600",
     outline: "border border-amber-500/40 hover:border-amber-500 text-amber-400 hover:bg-amber-500/10 focus:ring-amber-500",
   };
-  console.log({...p})
+  // console.log({...p})
     /*
   className = "mt-4"
 
