@@ -36,8 +36,8 @@ export default function PropertyForm({ initial, locations, onSave, onCancel }) {
     if (!file) return;
     setUploading(u => ({ ...u, [path]: true }));
     try {
-      // const url = await uploadToCloudinary(file);
-      const url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFzmSfDfPpr7MPkRgmtQUX_k4QRfHtipa9xw&s";
+      const url = await uploadToCloudinary(file);
+      // const url = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFzmSfDfPpr7MPkRgmtQUX_k4QRfHtipa9xw&s";
       setField(path, url);
     } catch {
       alert("Upload failed. Check Cloudinary config.");

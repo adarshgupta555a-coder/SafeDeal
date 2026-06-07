@@ -36,12 +36,9 @@ const SearchPage = () => {
     let query = supabase
       .from("properties")
       .select(`
-       id,
-      name,
-      image,
-      media,
-      price,
+      *,
       location!inner (
+      id,
       name
       )
       `)

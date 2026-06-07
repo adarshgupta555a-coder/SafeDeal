@@ -19,6 +19,10 @@ const PreferencesProp = () => {
     }
   }
 
+  if (places == null) {
+    return <h1 className='text-4xl text-[#ECC87D] text-center'>Places Loading...</h1>
+  }
+
   return (
     <>
     <section id="places" className="py-24 px-5 max-w-7xl mx-auto">

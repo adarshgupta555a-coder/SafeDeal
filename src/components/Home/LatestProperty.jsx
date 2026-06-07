@@ -28,7 +28,7 @@ const LatestProperty = () => {
     }
   }
   return (<>
-    {loading?<h1>Loading...</h1>:(<section id="properties" className="py-24 px-5 max-w-7xl mx-auto">
+    {loading?<h1 className='text-4xl text-[#ECC87D] text-center m-6'>Properties Loading...</h1>:(<section id="properties" className="py-24 px-5 max-w-7xl mx-auto">
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-14">
         <div>
           <div className="inline-flex items-center gap-2 text-gold text-xs tracking-widest uppercase mb-4 font-light">

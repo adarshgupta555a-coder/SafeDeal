@@ -14,12 +14,9 @@ const PropertiesPage = () => {
      const {data, error} = await supabase
     .from("properties")
     .select(`
-      id,
-      name,
-      image,
-      media,
-      price,
+      * ,
       location (
+      id,
       name
       )
       `)
@@ -46,7 +43,7 @@ const PropertiesPage = () => {
             href="#"
             className="self-start sm:self-auto inline-flex items-center gap-2 text-gold text-sm hover:gap-3 transition-all duration-300 group"
           >
-            View all listings
+            View
             <svg
               width={16}
               height={16}

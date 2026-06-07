@@ -108,12 +108,12 @@ const PropertyPage = () => {
                                 ₹{property?.price ? getCurrencyName(property?.price) : property?.price}
                             </div>
                             <div className="text-white/30 text-xs mt-1">
-                                ₹17,708 / sq.ft · Price Negotiable
+                                ₹{property?.overview?.sq_foot*4000} / sq.ft · Price Negotiable
                             </div>
-                            <div className="flex items-center sm:justify-end gap-1 mt-2">
+                            {/* <div className="flex items-center sm:justify-end gap-1 mt-2">
                                 <span className="star text-sm">★★★★★</span>
                                 <span className="text-white/40 text-xs">(48 reviews)</span>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>
@@ -132,7 +132,7 @@ const PropertyPage = () => {
                             <div className="main-image-wrap relative w-full h-[280px] sm:h-[380px] lg:h-[440px] cursor-zoom-in">
                                 {url?.mediaType === "image" ? (<img
                                     id="mainImg"
-                                    src={property?.thumbnail_image || "https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1200&auto=format&fit=crop&q=85"}
+                                    src={url?.mediaUrl || property?.thumbnail_image || "https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1200&auto=format&fit=crop&q=85"}
                                     alt="Luxury Sky Villa – Main View"
                                     className="w-full h-full object-cover"
                                 />) : url?.mediaType === "video" ? (
@@ -151,7 +151,7 @@ const PropertyPage = () => {
                                         Your browser does not support the video tag.
                                     </video>) : (<img
                                         id="mainImg"
-                                        src={url?.mediaUrl || property?.image || "https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1200&auto=format&fit=crop&q=85"}
+                                        src={url?.mediaUrl || property?.thumbnail_image || "https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1200&auto=format&fit=crop&q=85"}
                                         alt="Luxury Sky Villa – Main View"
                                         className="w-full h-full object-cover"
                                     />)}
@@ -219,13 +219,25 @@ const PropertyPage = () => {
                             {/* Thumbnails row */}
                             <div className="p-3 grid grid-cols-6 gap-2">
                                 {/* Thumb 1 (active) */}
-                                {property?.media_data?.images?.map((image, index) => <div
-                                    key={index}
+                                   <div
+                                    key={9}
                                     className="gal-thumb active rounded-xl overflow-hidden h-14 sm:h-16 cursor-pointer"
-                                    onClick={() => switchImg(image)}
+                                    onClick={() => switchImg(property?.thumbnail_image)}
                                 >
                                     <img
-                                        src={image}
+                                        src={property?.thumbnail_image}
+                                        alt=""
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+                                {[1,2,3,4]?.map((val, index) => 
+                                <div
+                                    key={index}
+                                    className="gal-thumb active rounded-xl overflow-hidden h-14 sm:h-16 cursor-pointer"
+                                    onClick={() => switchImg(property?.media_data[`image${val}`])}
+                                >
+                                    <img
+                                        src={property?.media_data[`image${val}`]}
                                         alt=""
                                         className="w-full h-full object-cover"
                                     />
@@ -306,7 +318,7 @@ const PropertyPage = () => {
                                             </svg>
                                         </div>
                                         <div className="font-display text-xl font-semibold text-white">
-                                            4
+                                            {property?.overview?.bedroom}
                                         </div>
                                         <div className="text-white/35 text-[10px] mt-0.5 uppercase tracking-wider">
                                             Bedrooms
@@ -330,7 +342,7 @@ const PropertyPage = () => {
                                             </svg>
                                         </div>
                                         <div className="font-display text-xl font-semibold text-white">
-                                            3
+                                            {property?.overview?.bathroom}
                                         </div>
                                         <div className="text-white/35 text-[10px] mt-0.5 uppercase tracking-wider">
                                             Bathrooms
@@ -354,7 +366,7 @@ const PropertyPage = () => {
                                             </svg>
                                         </div>
                                         <div className="font-display text-xl font-semibold text-white">
-                                            2,400
+                                            {property?.overview?.sq_foot}
                                         </div>
                                         <div className="text-white/35 text-[10px] mt-0.5 uppercase tracking-wider">
                                             Sq. Ft.
@@ -378,7 +390,7 @@ const PropertyPage = () => {
                                             </svg>
                                         </div>
                                         <div className="font-display text-xl font-semibold text-white">
-                                            2019
+                                            {property?.overview?.year_built}
                                         </div>
                                         <div className="text-white/35 text-[10px] mt-0.5 uppercase tracking-wider">
                                             Year Built
@@ -386,7 +398,7 @@ const PropertyPage = () => {
                                     </div>
                                 </div>
                                 {/* Description */}
-                                <div>
+                                {/* <div>
                                     <h3 className="font-display text-xl font-semibold text-white mb-3">
                                         About This Property
                                     </h3>
@@ -412,9 +424,9 @@ const PropertyPage = () => {
                                         of Bandra's finest restaurants, schools, and the Bandra–Worli
                                         Sea Link.
                                     </p>
-                                </div>
+                                </div> */}
                                 {/* Property Details Table */}
-                                <div>
+                                {/* <div>
                                     <h3 className="font-display text-xl font-semibold text-white mb-4">
                                         Property Details
                                     </h3>
@@ -480,9 +492,9 @@ const PropertyPage = () => {
                                             </span>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                                 {/* Highlights */}
-                                <div>
+                                {/* <div>
                                     <h3 className="font-display text-xl font-semibold text-white mb-4">
                                         Highlights
                                     </h3>
@@ -608,13 +620,13 @@ const PropertyPage = () => {
                                             <span className="text-white/60 text-xs">Spa Bathroom</span>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>}
                             {/* ── Tab: Amenities ── */}
                             {features === "tab-amenities" && <div id="tab-amenities" className="tab-pane active space-y-7">
                                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
                                     {/* Amenity: Pool */}
-                                    <div
+                                 {property?.amenities?.map((item, index)=>   <div
                                         className="amenity-card rounded-xl p-4 text-center border border-white/5 cursor-default"
                                         style={{ background: "rgba(255,255,255,0.02)" }}
                                     >
@@ -639,12 +651,12 @@ const PropertyPage = () => {
                                             </svg>
                                         </div>
                                         <div className="text-white text-xs font-medium">
-                                            Infinity Pool
+                                            {item}
                                         </div>
                                         <div className="text-white/30 text-[10px] mt-0.5">Rooftop</div>
-                                    </div>
+                                    </div>)}
                                     {/* Amenity: Gym */}
-                                    <div
+                                    {/* <div
                                         className="amenity-card rounded-xl p-4 text-center border border-white/5 cursor-default"
                                         style={{ background: "rgba(255,255,255,0.02)" }}
                                     >
@@ -672,9 +684,9 @@ const PropertyPage = () => {
                                         <div className="text-white/30 text-[10px] mt-0.5">
                                             Fully Equipped
                                         </div>
-                                    </div>
+                                    </div> */}
                                     {/* Amenity: Parking */}
-                                    <div
+                                    {/* <div
                                         className="amenity-card rounded-xl p-4 text-center border border-white/5 cursor-default"
                                         style={{ background: "rgba(255,255,255,0.02)" }}
                                     >
@@ -703,9 +715,9 @@ const PropertyPage = () => {
                                         <div className="text-white/30 text-[10px] mt-0.5">
                                             2 Covered Slots
                                         </div>
-                                    </div>
+                                    </div> */}
                                     {/* Amenity: Security */}
-                                    <div
+                                    {/* <div
                                         className="amenity-card rounded-xl p-4 text-center border border-white/5 cursor-default"
                                         style={{ background: "rgba(255,255,255,0.02)" }}
                                     >
@@ -735,9 +747,9 @@ const PropertyPage = () => {
                                         <div className="text-white/30 text-[10px] mt-0.5">
                                             CCTV + Guards
                                         </div>
-                                    </div>
+                                    </div> */}
                                     {/* Amenity: Lift */}
-                                    <div
+                                    {/* <div
                                         className="amenity-card rounded-xl p-4 text-center border border-white/5 cursor-default"
                                         style={{ background: "rgba(255,255,255,0.02)" }}
                                     >
@@ -768,9 +780,9 @@ const PropertyPage = () => {
                                         <div className="text-white/30 text-[10px] mt-0.5">
                                             4 Elevators
                                         </div>
-                                    </div>
+                                    </div> */}
                                     {/* Amenity: Concierge */}
-                                    <div
+                                    {/* <div
                                         className="amenity-card rounded-xl p-4 text-center border border-white/5 cursor-default"
                                         style={{ background: "rgba(255,255,255,0.02)" }}
                                     >
@@ -799,9 +811,9 @@ const PropertyPage = () => {
                                         <div className="text-white/30 text-[10px] mt-0.5">
                                             24hr Service
                                         </div>
-                                    </div>
+                                    </div> */}
                                     {/* Amenity: Garden */}
-                                    <div
+                                    {/* <div
                                         className="amenity-card rounded-xl p-4 text-center border border-white/5 cursor-default"
                                         style={{ background: "rgba(255,255,255,0.02)" }}
                                     >
@@ -831,9 +843,9 @@ const PropertyPage = () => {
                                         <div className="text-white/30 text-[10px] mt-0.5">
                                             Landscaped
                                         </div>
-                                    </div>
+                                    </div> */}
                                     {/* Amenity: Power */}
-                                    <div
+                                    {/* <div
                                         className="amenity-card rounded-xl p-4 text-center border border-white/5 cursor-default"
                                         style={{ background: "rgba(255,255,255,0.02)" }}
                                     >
@@ -863,7 +875,7 @@ const PropertyPage = () => {
                                         <div className="text-white/30 text-[10px] mt-0.5">
                                             100% Backup
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>}
                             {/* ── Tab: Floor Plan ── */}
@@ -904,282 +916,12 @@ const PropertyPage = () => {
                                     </div>
                                     {/* SVG Floor Plan */}
                                     <div className="p-6 flex items-center justify-center min-h-[340px]">
-                                        <svg
-                                            viewBox="0 0 500 380"
-                                            className="w-full max-w-xl"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            {/* Outer boundary */}
-                                            <rect
-                                                x={20}
-                                                y={20}
-                                                width={460}
-                                                height={340}
-                                                rx={4}
-                                                stroke="rgba(224,181,104,0.5)"
-                                                strokeWidth="1.5"
-                                                fill="rgba(224,181,104,0.03)"
-                                            />
-                                            {/* Master bedroom */}
-                                            <rect
-                                                x={20}
-                                                y={20}
-                                                width={160}
-                                                height={140}
-                                                rx={2}
-                                                stroke="rgba(224,181,104,0.35)"
-                                                strokeWidth={1}
-                                                fill="rgba(224,181,104,0.04)"
-                                            />
-                                            <text
-                                                x={100}
-                                                y={80}
-                                                textAnchor="middle"
-                                                fill="rgba(224,181,104,0.7)"
-                                                fontSize={10}
-                                                fontFamily="DM Sans"
-                                            >
-                                                Master Bedroom
-                                            </text>
-                                            <text
-                                                x={100}
-                                                y={96}
-                                                textAnchor="middle"
-                                                fill="rgba(255,255,255,0.25)"
-                                                fontSize={8}
-                                                fontFamily="DM Sans"
-                                            >
-                                                En-suite + Terrace
-                                            </text>
-                                            {/* Bedroom 2 */}
-                                            <rect
-                                                x={180}
-                                                y={20}
-                                                width={120}
-                                                height={120}
-                                                rx={2}
-                                                stroke="rgba(224,181,104,0.3)"
-                                                strokeWidth={1}
-                                                fill="rgba(6,8,60,0.3)"
-                                            />
-                                            <text
-                                                x={240}
-                                                y={76}
-                                                textAnchor="middle"
-                                                fill="rgba(224,181,104,0.6)"
-                                                fontSize={10}
-                                                fontFamily="DM Sans"
-                                            >
-                                                Bedroom 2
-                                            </text>
-                                            {/* Bedroom 3 */}
-                                            <rect
-                                                x={300}
-                                                y={20}
-                                                width={120}
-                                                height={120}
-                                                rx={2}
-                                                stroke="rgba(224,181,104,0.3)"
-                                                strokeWidth={1}
-                                                fill="rgba(6,8,60,0.3)"
-                                            />
-                                            <text
-                                                x={360}
-                                                y={76}
-                                                textAnchor="middle"
-                                                fill="rgba(224,181,104,0.6)"
-                                                fontSize={10}
-                                                fontFamily="DM Sans"
-                                            >
-                                                Bedroom 3
-                                            </text>
-                                            {/* Bedroom 4 */}
-                                            <rect
-                                                x={420}
-                                                y={20}
-                                                width={60}
-                                                height={120}
-                                                rx={2}
-                                                stroke="rgba(224,181,104,0.3)"
-                                                strokeWidth={1}
-                                                fill="rgba(6,8,60,0.3)"
-                                            />
-                                            <text
-                                                x={450}
-                                                y={76}
-                                                textAnchor="middle"
-                                                fill="rgba(224,181,104,0.5)"
-                                                fontSize={8}
-                                                fontFamily="DM Sans"
-                                            >
-                                                Bed 4
-                                            </text>
-                                            {/* Bathrooms */}
-                                            <rect
-                                                x={20}
-                                                y={160}
-                                                width={80}
-                                                height={70}
-                                                rx={2}
-                                                stroke="rgba(224,181,104,0.25)"
-                                                strokeWidth={1}
-                                                fill="rgba(6,8,60,0.4)"
-                                            />
-                                            <text
-                                                x={60}
-                                                y={198}
-                                                textAnchor="middle"
-                                                fill="rgba(224,181,104,0.5)"
-                                                fontSize={8}
-                                                fontFamily="DM Sans"
-                                            >
-                                                Bath 1
-                                            </text>
-                                            <rect
-                                                x={100}
-                                                y={160}
-                                                width={80}
-                                                height={70}
-                                                rx={2}
-                                                stroke="rgba(224,181,104,0.25)"
-                                                strokeWidth={1}
-                                                fill="rgba(6,8,60,0.4)"
-                                            />
-                                            <text
-                                                x={140}
-                                                y={198}
-                                                textAnchor="middle"
-                                                fill="rgba(224,181,104,0.5)"
-                                                fontSize={8}
-                                                fontFamily="DM Sans"
-                                            >
-                                                Bath 2
-                                            </text>
-                                            {/* Living + Dining */}
-                                            <rect
-                                                x={180}
-                                                y={140}
-                                                width={240}
-                                                height={130}
-                                                rx={2}
-                                                stroke="rgba(224,181,104,0.4)"
-                                                strokeWidth={1}
-                                                fill="rgba(224,181,104,0.04)"
-                                            />
-                                            <text
-                                                x={300}
-                                                y={198}
-                                                textAnchor="middle"
-                                                fill="rgba(224,181,104,0.7)"
-                                                fontSize={11}
-                                                fontFamily="DM Sans"
-                                            >
-                                                Living + Dining
-                                            </text>
-                                            <text
-                                                x={300}
-                                                y={214}
-                                                textAnchor="middle"
-                                                fill="rgba(255,255,255,0.2)"
-                                                fontSize={8}
-                                                fontFamily="DM Sans"
-                                            >
-                                                Floor-to-ceiling glazing
-                                            </text>
-                                            {/* Kitchen */}
-                                            <rect
-                                                x={420}
-                                                y={140}
-                                                width={60}
-                                                height={130}
-                                                rx={2}
-                                                stroke="rgba(224,181,104,0.3)"
-                                                strokeWidth={1}
-                                                fill="rgba(6,8,60,0.4)"
-                                            />
-                                            <text
-                                                x={450}
-                                                y={204}
-                                                textAnchor="middle"
-                                                fill="rgba(224,181,104,0.6)"
-                                                fontSize={8}
-                                                fontFamily="DM Sans"
-                                            >
-                                                Kitchen
-                                            </text>
-                                            {/* Utility/Store */}
-                                            <rect
-                                                x={20}
-                                                y={230}
-                                                width={160}
-                                                height={60}
-                                                rx={2}
-                                                stroke="rgba(224,181,104,0.2)"
-                                                strokeWidth={1}
-                                                fill="rgba(6,8,60,0.3)"
-                                            />
-                                            <text
-                                                x={100}
-                                                y={264}
-                                                textAnchor="middle"
-                                                fill="rgba(224,181,104,0.4)"
-                                                fontSize={9}
-                                                fontFamily="DM Sans"
-                                            >
-                                                Utility + Store
-                                            </text>
-                                            {/* Entry + Hall */}
-                                            <rect
-                                                x={20}
-                                                y={290}
-                                                width={460}
-                                                height={70}
-                                                rx={2}
-                                                stroke="rgba(224,181,104,0.25)"
-                                                strokeWidth={1}
-                                                fill="rgba(6,8,60,0.3)"
-                                            />
-                                            <text
-                                                x={250}
-                                                y={330}
-                                                textAnchor="middle"
-                                                fill="rgba(224,181,104,0.55)"
-                                                fontSize={10}
-                                                fontFamily="DM Sans"
-                                            >
-                                                Entry Foyer + Lobby Corridor
-                                            </text>
-                                            {/* Compass */}
-                                            <g transform="translate(460,350)">
-                                                <circle
-                                                    cx={0}
-                                                    cy={0}
-                                                    r={12}
-                                                    stroke="rgba(224,181,104,0.3)"
-                                                    strokeWidth={1}
-                                                    fill="rgba(0,3,46,0.6)"
-                                                />
-                                                <text
-                                                    x={0}
-                                                    y={-3}
-                                                    textAnchor="middle"
-                                                    fill="#E0B568"
-                                                    fontSize={7}
-                                                    fontFamily="DM Sans"
-                                                >
-                                                    N
-                                                </text>
-                                                <line
-                                                    x1={0}
-                                                    y1={-9}
-                                                    x2={0}
-                                                    y2={-4}
-                                                    stroke="#E0B568"
-                                                    strokeWidth={1}
-                                                />
-                                            </g>
-                                        </svg>
+                                       <img
+                                    id="mainImg"
+                                    src={property?.graph_image || "https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1200&auto=format&fit=crop&q=85"}
+                                    alt="Luxury Sky Villa – Main View"
+                                    className="w-full h-full object-cover"
+                                />
                                     </div>
                                 </div>
                             </div>}
@@ -1241,7 +983,7 @@ const PropertyPage = () => {
                         </div>
                         {/* end tabs */}
                         {/* ── Reviews ── */}
-                        <div className="fade-up-d2">
+                        {/* <div className="fade-up-d2">
                             <div className="divider mb-7" />
                             <h3 className="font-display text-xl font-semibold text-white mb-5">
                                 Client Reviews
@@ -1310,7 +1052,7 @@ const PropertyPage = () => {
                                     </p>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                     {/* end LEFT column */}
                     {/* ─────────────────── RIGHT: STICKY PANEL ─────────────────── */}
@@ -1344,7 +1086,7 @@ const PropertyPage = () => {
                             <div className="grid grid-cols-3 gap-2 mb-5 text-center">
                                 <div>
                                     <div className="font-display text-lg font-semibold text-white">
-                                        4
+                                        {property?.overview?.bedroom}
                                     </div>
                                     <div className="text-white/30 text-[10px] uppercase tracking-wide">
                                         Beds
@@ -1352,7 +1094,7 @@ const PropertyPage = () => {
                                 </div>
                                 <div>
                                     <div className="font-display text-lg font-semibold text-white">
-                                        3
+                                        {property?.overview?.bathroom}
                                     </div>
                                     <div className="text-white/30 text-[10px] uppercase tracking-wide">
                                         Baths
@@ -1360,7 +1102,7 @@ const PropertyPage = () => {
                                 </div>
                                 <div>
                                     <div className="font-display text-lg font-semibold text-white">
-                                        2.4K
+                                        {property?.overview?.sq_foot}
                                     </div>
                                     <div className="text-white/30 text-[10px] uppercase tracking-wide">
                                         Sq.ft
@@ -1655,7 +1397,7 @@ const PropertyPage = () => {
                 {/* end main grid */}
             </main>
             {/* ════════════════════════════════════════ SIMILAR PROPERTIES */}
-            <section className="max-w-7xl mx-auto px-5 lg:px-8 py-12">
+              {/* <section className="max-w-7xl mx-auto px-5 lg:px-8 py-12">
                 <div className="divider mb-10" />
                 <div className="flex items-end justify-between mb-6">
                     <div>
@@ -1689,7 +1431,7 @@ const PropertyPage = () => {
                     </a>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {/* Similar card 1 */}
+                   Similar card 1 
                     <div
                         className="group rounded-2xl overflow-hidden border border-white/5 hover:border-gold/20 transition-all duration-500 hover:shadow-xl cursor-pointer"
                         style={{ background: "rgba(6,8,60,0.4)" }}
@@ -1737,107 +1479,13 @@ const PropertyPage = () => {
                             </div>
                         </div>
                     </div>
-                    {/* Similar card 2 */}
-                    <div
-                        className="group rounded-2xl overflow-hidden border border-white/5 hover:border-gold/20 transition-all duration-500 hover:shadow-xl cursor-pointer"
-                        style={{ background: "rgba(6,8,60,0.4)" }}
-                    >
-                        <div className="relative overflow-hidden h-48">
-                            <img
-                                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&auto=format&fit=crop&q=80"
-                                alt="Similar 2"
-                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                            />
-                            <div className="absolute top-3 left-3 flex gap-1.5">
-                                <span
-                                    className="px-2 py-1 rounded-full text-[10px] font-semibold"
-                                    style={{ background: "#E0B568", color: "#00032E" }}
-                                >
-                                    For Sale
-                                </span>
-                                <span
-                                    className="px-2 py-1 rounded-full text-[10px] font-semibold border border-gold/30 text-gold"
-                                    style={{ background: "rgba(224,181,104,0.08)" }}
-                                >
-                                    New
-                                </span>
-                            </div>
-                        </div>
-                        <div className="p-4">
-                            <div className="font-display text-base font-semibold text-white mb-1 group-hover:text-gold transition-colors">
-                                Heritage Garden Villa
-                            </div>
-                            <div className="flex items-center gap-1 text-white/35 text-xs mb-3">
-                                <svg
-                                    width={10}
-                                    height={10}
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="#E0B568"
-                                    strokeWidth={2}
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                >
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                                    <circle cx={12} cy={10} r={3} />
-                                </svg>
-                                Juhu, Mumbai
-                            </div>
-                            <div className="flex items-center justify-between">
-                                <div className="font-display text-xl font-semibold gold-text">
-                                    ₹5.1 Cr
-                                </div>
-                                <div className="text-white/30 text-xs">5 BHK · 3,200 sq.ft.</div>
-                            </div>
-                        </div>
-                    </div>
-                    {/* Similar card 3 */}
-                    <div
-                        className="group rounded-2xl overflow-hidden border border-white/5 hover:border-gold/20 transition-all duration-500 hover:shadow-xl cursor-pointer"
-                        style={{ background: "rgba(6,8,60,0.4)" }}
-                    >
-                        <div className="relative overflow-hidden h-48">
-                            <img
-                                src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=600&auto=format&fit=crop&q=80"
-                                alt="Similar 3"
-                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                            />
-                            <div className="absolute top-3 left-3">
-                                <span className="px-2 py-1 rounded-full text-[10px] font-semibold bg-emerald-500/90 text-white">
-                                    For Rent
-                                </span>
-                            </div>
-                        </div>
-                        <div className="p-4">
-                            <div className="font-display text-base font-semibold text-white mb-1 group-hover:text-gold transition-colors">
-                                Sky Terrace Duplex
-                            </div>
-                            <div className="flex items-center gap-1 text-white/35 text-xs mb-3">
-                                <svg
-                                    width={10}
-                                    height={10}
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="#E0B568"
-                                    strokeWidth={2}
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                >
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                                    <circle cx={12} cy={10} r={3} />
-                                </svg>
-                                Worli, Mumbai
-                            </div>
-                            <div className="flex items-center justify-between">
-                                <div className="font-display text-xl font-semibold gold-text">
-                                    ₹1.4L/mo
-                                </div>
-                                <div className="text-white/30 text-xs">4 BHK · 2,800 sq.ft.</div>
-                            </div>
-                        </div>
-                    </div>
+
+
+
+
+
                 </div>
-            </section>
+            </section>  */}
         </>
 
     )

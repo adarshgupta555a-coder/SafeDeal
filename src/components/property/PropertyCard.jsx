@@ -74,7 +74,7 @@ const PropertyCard = ({property}) => {
                   <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                   <polyline points="9 22 9 12 15 12 15 22" />
                 </svg>
-                4 BHK
+                {property?.overview?.bedroom} BEDS
               </span>
               <span className="flex items-center gap-1">
                 <svg
@@ -87,9 +87,9 @@ const PropertyCard = ({property}) => {
                 >
                   <path d="M4 22V2m0 14h16M4 6h16" />
                 </svg>
-                3 Baths
+                {property?.overview?.bathroom} Baths
               </span>
-              <span>2,400 sq.ft.</span>
+              <span>{property?.overview?.sq_foot} sq.ft.</span>
             </div>
             <div className="flex items-center justify-between">
               <div>

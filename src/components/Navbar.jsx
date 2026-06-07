@@ -80,7 +80,7 @@ const Navbar = () => {
                             Contact
                         </a>
                     </nav>
-                    {/* CTA Button + Hamburger */}
+                    {/* CTA Button + Hamburger
                     <div className="flex items-center gap-4">
                         <a
                             href="#properties"
@@ -125,7 +125,7 @@ const Navbar = () => {
                                 <line x1={3} y1={18} x2={21} y2={18} />
                             </svg>
                         </button>
-                    </div>
+                    </div> */}
                 </div>
                 {/* Mobile Menu */}
                 <div
