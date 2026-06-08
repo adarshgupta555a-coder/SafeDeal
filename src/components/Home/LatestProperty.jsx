@@ -21,6 +21,8 @@ const LatestProperty = () => {
       name
       )
       `)
+      .eq("status","active")
+
 
     if (!error) {
       setProperties(data);

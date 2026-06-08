@@ -13,6 +13,8 @@ const PreferencesProp = () => {
     const {data, error} = await supabase
     .from("location")
     .select("*")
+    .eq("status","active")
+
 
     if (!error) {
       setPlaces(data)

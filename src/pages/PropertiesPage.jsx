@@ -20,6 +20,7 @@ const PropertiesPage = () => {
       name
       )
       `)
+      .eq("status","active")
 
     if (!error) {
       setProperties(data)

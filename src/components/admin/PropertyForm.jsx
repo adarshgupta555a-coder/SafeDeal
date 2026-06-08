@@ -8,7 +8,7 @@ import supabase from "../../database/supabase"
 import Btn from "../../ui/Btn";
 
 const defaultProp = () => ({
- name: "", location: "", thumbnail_image: "", graph_image: "",
+  name: "", location: "", thumbnail_image: "", graph_image: "",
   media_data: { video: "", image1: "", image2: "", image3: "", image4: "" },
   price: 0,
   overview: { bedroom: "", bathroom: "", sq_foot: "", year_built: "" },
@@ -16,7 +16,7 @@ const defaultProp = () => ({
 });
 
 export default function PropertyForm({ initial, locations, onSave, onCancel }) {
-  const [form, setForm] = useState( initial? {   ...initial, location: initial.location?.id ?? initial.location}: defaultProp);
+  const [form, setForm] = useState(initial ? { ...initial, location: initial.location?.id ?? initial.location } : defaultProp);
   const [uploading, setUploading] = useState({});
   const [amenityInput, setAmenityInput] = useState("");
   const [saving, setSaving] = useState(false);
@@ -62,57 +62,60 @@ export default function PropertyForm({ initial, locations, onSave, onCancel }) {
     if (initial === null) {
       await submitProperty(form)
     } else {
-            console.log("update")
+      console.log("update")
       await UpdateProperty(form)
     }
-    
+
   };
 
   const isUploading = Object.values(uploading).some(Boolean);
 
-   const submitProperty = async (propertyData) => {
-          console.log("create")
-      const { data, error } = await supabase
-        .from('properties')
-        .insert([propertyData])
-        .select()
-  
-      if (!error) {
-        onSave({ ...form, id: data.id ?? Date.now() });
-        setSaving(false);
-      }
-    }
+  const submitProperty = async (propertyData) => {
+    console.log("create")
+    const { data, error } = await supabase
+      .from('properties')
+      .insert([propertyData])
+      .select()
 
-     const UpdateChecker = (propertyData) => {
+    if (!error) {
+      onSave({ ...form, id: data.id ?? Date.now() });
+      setSaving(false);
+    }
+  }
+
+  const UpdateChecker = (propertyData) => {
     const { created_at, id, ...PropertyInfo } = propertyData;
-      console.log(propertyData)
+    console.log(propertyData)
     const checkedProperty = {};
 
     for (const key in PropertyInfo) {
-       if (propertyData[key] === "") {
-         continue;
+      if (propertyData[key] === "") {
+        continue;
       }
+
       if (typeof propertyData[key] === "object") {
-         checkedProperty[key] = PropertyInfo[key];
-         continue;
+        checkedProperty[key] = PropertyInfo[key];
+        continue;
       }
+
 
       if (initial[key] !== PropertyInfo[key]) {
         checkedProperty[key] = PropertyInfo[key];
       }
     }
-     return Object.keys(checkedProperty).length ? checkedProperty: null;
+    return Object.keys(checkedProperty).length ? checkedProperty : null;
 
   };
 
   const UpdateProperty = async (propertyData) => {
     const UpdatededData = UpdateChecker(propertyData)
-    console.log(UpdatededData)
     if (UpdatededData === null) {
-    // onSave({ ...form, id: form.id ?? Date.now() });
-    setSaving(false);
-    return;
+      // onSave({ ...form, id: form.id ?? Date.now() });
+      setSaving(false);
+      return;
     }
+
+
 
     const { data, error } = await supabase
       .from('properties')
@@ -121,9 +124,9 @@ export default function PropertyForm({ initial, locations, onSave, onCancel }) {
       .select()
 
     if (!error) {
-    const {created_at, id, ...pro} = form;
-    onSave({ ...pro, id: initial.id ?? Date.now() });
-    setSaving(false);
+      const { created_at, id, ...pro } = form;
+      onSave({ ...pro, id: initial.id ?? Date.now() });
+      setSaving(false);
     }
   }
 
@@ -139,14 +142,14 @@ export default function PropertyForm({ initial, locations, onSave, onCancel }) {
             <Label>Property Name</Label>
             <Input placeholder="e.g. Skyline Residency" value={form?.name} onChange={e => setField("name", e.target.value)} required />
           </div>
-            <div>
+          <div>
             <Label>Price</Label>
             <Input placeholder="e.g. 900000" type="number" value={form?.price} onChange={e => setField("price", e.target.value)} required />
           </div>
           <div>
             <Label>Location</Label>
             <Select value={initial?.location?.id || form?.location} onChange={e => setField("location", e.target.value)} required>
-              <option value="">{initial?.location?.name||"Select location…"}</option>
+              <option value="">{initial?.location?.name || "Select location…"}</option>
               {locations && locations.map(l => <option key={l.id} value={l.id}>{l.name}</option>)}
             </Select>
           </div>

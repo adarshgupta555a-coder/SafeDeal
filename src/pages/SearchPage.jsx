@@ -42,6 +42,8 @@ const SearchPage = () => {
       name
       )
       `)
+      .eq("status","active")
+
 
     if (location) {
       console.log(location)

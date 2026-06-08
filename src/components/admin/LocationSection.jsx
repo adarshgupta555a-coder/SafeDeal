@@ -17,7 +17,7 @@ export default function LocationsSection({ locations, setLocations }) {
   const DeleteLocation = async () => {
     const { error } = await supabase
       .from('location')
-      .delete()
+      .update({status:"inactive"})
       .eq('id', deleting.id)
       if (!error) {
           setLocations(ls => ls.filter(x => x.id !== deleting.id)); setDeleting(null);

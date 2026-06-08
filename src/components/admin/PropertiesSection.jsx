@@ -48,7 +48,7 @@ export default function PropertiesSection({ locations }) {
   const DeleteProperty = async () => {
     const { error } = await supabase
       .from('properties')
-      .delete()
+      .update({status:"inactive"})
       .eq('id', deleting.id)
     if (!error) {
       setProperties(ps => ps.filter(x => x.id !== deleting.id)); 
