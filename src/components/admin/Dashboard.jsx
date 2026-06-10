@@ -9,7 +9,6 @@ const NAV = [
   { id: "locations", label: "Locations", icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /> },
 ];
 
-const DUMMY_CREDENTIALS = { email: "admin@estate.com", password: "Admin@123" };
 
 
 
@@ -93,7 +92,7 @@ export default function Dashboard({ onLogout }) {
           <h1 className="text-white font-bold text-lg flex-1 capitalize">{active}</h1>
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-xs text-slate-500 hidden sm:block">admin@estate.com</span>
+            <span className="text-xs text-slate-500 hidden sm:block">rakesh@estate.com</span>
           </div>
         </header>
 

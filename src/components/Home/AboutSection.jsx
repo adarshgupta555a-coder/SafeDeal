@@ -92,7 +92,7 @@ const AboutSection = () => {
           {/* Large image */}
           <div className="partner-frame col-span-1 row-span-2 rounded-2xl overflow-hidden h-80">
             <img
-              src="https://instagram.famd1-2.fna.fbcdn.net/v/t51.82787-15/656469163_18103789009938016_1777837264366262279_n.jpg?stp=dst-jpegr_e35_tt6&_nc_cat=105&ig_cache_key=Mzg2MDUwOTAyMzE4MzYwNTQxNQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4MTkyMC5oZHIuQzMifQ%3D%3D&_nc_ohc=zMyvrlUKGyAQ7kNvwEX8T39&_nc_oc=AdqoBYmZenYVuDj5tdxynF1h6xtxIvpdHqk63X5wSm30s8S7I4Zh6X1FAmNa1Z3O_t5vIzGvbYQixs95AD97QQA1&_nc_ad=z-m&_nc_cid=2034&_nc_zt=23&_nc_ht=instagram.famd1-2.fna&_nc_gid=fP5Mynr2M48u39og6PtuGA&_nc_ss=7a32e&oh=00_AfyjDMwP370DLpWaAs4DQUFjp1wASQeHWy7PszAOiXiqzA&oe=69CDA00D"
+              src="/rakesh_bhai.png"
               alt="Partner 1"
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
             />

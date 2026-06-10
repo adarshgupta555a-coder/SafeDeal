@@ -3,7 +3,7 @@ import Label from "../../ui/Label";
 import Input from "../../ui/Input";
 import Btn from "../../ui/Btn";
 
-const DUMMY_CREDENTIALS = { email: "admin@estate.com", password: "Admin@123" };
+const DUMMY_CREDENTIALS = { email: "rakesh@estate.com", password: "Rakesh@837" };
 
 export default function LoginPage({ onLogin }) {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -66,7 +66,7 @@ export default function LoginPage({ onLogin }) {
               {loading ? <><div className="w-4 h-4 border-2 border-slate-900 border-t-transparent rounded-full animate-spin" /> Signing in…</> : "Sign In"}
             </Btn>
           </form>
-          <p className="mt-4 text-center text-xs text-slate-600">Demo: admin@estate.com / Admin@123</p>
+          <p className="mt-4 text-center text-xs text-slate-600"></p>
         </div>
       </div>
     </div>

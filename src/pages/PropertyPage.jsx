@@ -1165,14 +1165,14 @@ const PropertyPage = () => {
                             <div className="flex items-center gap-3 mb-4">
                                 <div className="relative flex-shrink-0">
                                     <img
-                                        src="https://instagram.famd1-2.fna.fbcdn.net/v/t51.82787-15/656469163_18103789009938016_1777837264366262279_n.jpg?stp=dst-jpegr_e35_tt6&_nc_cat=105&ig_cache_key=Mzg2MDUwOTAyMzE4MzYwNTQxNQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4MTkyMC5oZHIuQzMifQ%3D%3D&_nc_ohc=zMyvrlUKGyAQ7kNvwEX8T39&_nc_oc=AdqoBYmZenYVuDj5tdxynF1h6xtxIvpdHqk63X5wSm30s8S7I4Zh6X1FAmNa1Z3O_t5vIzGvbYQixs95AD97QQA1&_nc_ad=z-m&_nc_cid=2034&_nc_zt=23&_nc_ht=instagram.famd1-2.fna&_nc_gid=fP5Mynr2M48u39og6PtuGA&_nc_ss=7a32e&oh=00_AfyjDMwP370DLpWaAs4DQUFjp1wASQeHWy7PszAOiXiqzA&oe=69CDA00D"
+                                        src="/rakesh_bhai.png"
                                         alt="Agent"
                                         className="w-12 h-12 rounded-full object-cover border-2 border-gold/30"
                                     />
                                     <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-400 border-2 border-navy-card" />
                                 </div>
                                 <div>
-                                    <div className="text-white text-sm font-medium">Sahil Ansari</div>
+                                    <div className="text-white text-sm font-medium">Rakesh Bhai</div>
                                     <div className="text-white/35 text-xs">
                                         Senior Property Advisor
                                     </div>
@@ -1186,7 +1186,7 @@ const PropertyPage = () => {
                             </div>
                             <div className="space-y-2 mb-4">
                                 <a
-                                    href="tel:+919876543210"
+                                    href="tel:+919767067837"
                                     className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl border border-white/6 hover:border-gold/25 transition-all duration-300 group"
                                     style={{ background: "rgba(255,255,255,0.02)" }}
                                 >
@@ -1204,7 +1204,7 @@ const PropertyPage = () => {
                                         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.65 3.38 2 2 0 0 1 3.62 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                                     </svg>
                                     <span className="text-white/60 text-xs group-hover:text-white transition-colors">
-                                        +91 70439 21914
+                                        +91 97670 67837
                                     </span>
                                 </a>
                                 <a
@@ -1227,7 +1227,7 @@ const PropertyPage = () => {
                                         <polyline points="22,6 12,13 2,6" />
                                     </svg>
                                     <span className="text-white/60 text-xs group-hover:text-white transition-colors">
-                                        sahilansari@gmail.com
+                                        rakeshbhai@gmail.com
                                     </span>
                                 </a>
                             </div>
