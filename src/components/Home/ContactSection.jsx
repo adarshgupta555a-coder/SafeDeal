@@ -65,7 +65,7 @@ const ContactSection = () => {
                             </label>
                             <input
                                 type="tel"
-                                placeholder="+91 98765 43210"
+                                placeholder="+91 97670 67837"
                                 className="gold-input w-full px-4 py-3 rounded-xl text-sm font-light transition-all duration-300"
                                 style={{
                                     background: "rgba(255,255,255,0.05)",
@@ -139,7 +139,7 @@ const ContactSection = () => {
                             >
                                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.65 3.38 2 2 0 0 1 3.62 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                             </svg>
-                            +91 98765 43210
+                            +91 97670 67837
                         </a>
                         <a
                             href="mailto:info@safedeal.in"

@@ -226,7 +226,7 @@ const FooterSection = () => {
                 href="tel:+919876543210"
                 className="text-white/35 text-sm hover:text-gold transition-colors duration-300 font-light"
               >
-                +91 98765 43210
+                +91 97670 67837
               </a>
             </li>
             <li className="flex items-center gap-3">

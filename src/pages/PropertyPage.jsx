@@ -1238,7 +1238,7 @@ const PropertyPage = () => {
                                 </div>
                                 <div className="flex gap-2">
                                     <a
-                                        href={`https://wa.me/917043921914?text=${property?.name}`}
+                                        href={`https://wa.me/919767067837?text=${property?.name}`}
                                         onclick="showToast('Shared on WhatsApp!')"
                                         className="share-btn flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium flex-1 justify-center border border-emerald-500/25 text-emerald-400 hover:bg-emerald-500/8 transition-colors"
                                     >

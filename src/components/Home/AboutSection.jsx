@@ -100,7 +100,7 @@ const AboutSection = () => {
           {/* Small image 1 */}
           <div className="partner-frame rounded-2xl overflow-hidden h-36">
             <img
-              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&auto=format&fit=crop&q=80"
+              src="/rakesh_bhai1.jpeg"
               alt="Partner 2"
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
             />
